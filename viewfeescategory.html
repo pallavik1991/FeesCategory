@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Fees Category</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	
+	
+</head>
+<body>
+
+	<form method="GET">
+		<h1>Fees Category</h1>
+		<table border="1" id="table_feescategory">
+			<thead>
+				<tr>
+					<th>Fees Category Name</th>
+					
+				</tr>
+			</thead>
+		</table>
+		
+	
+	</form>
+		<script type="text/javascript">
+			$(document).ready(function(){
+
+			     $.ajax({
+			     
+			      url: 'dal_viewfeescategory.php',
+			      datatype: 'json',
+			        success: function(data)          //on recieve of reply
+      				{
+      					result=JSON.parse(data);
+      					var table_feescategory=document.getElementById("table_feescategory");
+      					for(var i=0;i<result.length; i++)
+      					{
+      						var feescategoryname=result[i].fees_categoryname;
+      						
+      						feescategoryname='<td>'+feescategoryname+'</td>';
+      						
+      						var row='<tr>'+feescategoryname+'</tr>';
+      						$('#table_feescategory tr:last').after(row);
+      					}
+
+		 			}	
+		 			
+			     
+			});
+			 });
+	</script>
+</body>
+</html>
